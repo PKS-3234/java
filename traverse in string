@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Demo
+{
+    public static void seperate(String s,int length)
+    {
+        String str1="",str2="";
+        
+        for(int i=0;i<length;i++)
+        {
+           if(s.charAt(i)=='#')
+            str1+=s.charAt(i);
+        else
+            str2+=s.charAt(i);
+        }
+        
+        System.out.println(str1.concat(str2));
+    }
+    
+    
+    public static void main(String args[])
+    {
+       Scanner sc= new Scanner(System.in);
+       System.out.println("enter string with #: ");
+       String s=sc.next();
+       int len=s.length();
+       seperate(s,len);
+    }
+}
