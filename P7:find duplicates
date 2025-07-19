@@ -1,0 +1,28 @@
+import java.util.*;
+class Demo{
+    public static void main(String[] args)
+    {  
+        Scanner sc= new Scanner(System.in);
+        int n= sc.nextInt();
+        int[] array = new int[n];
+        for(int i=0;i<n;i++)
+        {
+            array[i]=sc.nextInt();
+            
+        }
+       HashSet<Integer> name= new HashSet<>();
+       boolean foundDuplicate=false;
+       for(int i=0;i<array.length;i++)
+       {
+           if(!name.add(array[i])){
+               foundDuplicate=true;
+               break;
+           }
+       }
+       if(foundDuplicate==true)
+       System.out.println("true");
+       else
+       System.out.println("false");
+        
+    }
+}
