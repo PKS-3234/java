@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Main {
+    // The sum method should return a long to handle large sums
+    public static long sum(int[] arr) {
+        long current_sum = 0; // Use long for the sum to prevent overflow
+        for (int i = 0; i < arr.length; i++) {
+            current_sum += arr[i];
+        }
+        return current_sum;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] array = new int[n];
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sc.nextInt();
+        }
+
+        // Calculate the expected sum of numbers from 0 to N
+        // Cast n to long BEFORE multiplication to prevent overflow
+        long actual_sum = (long)n * (n + 1) / 2;
+        
+        // Call the sum method, which now returns a long
+        long present_sum = sum(array);
+
+        // The final result (the missing number) will fit in int,
+        // as the difference will be within the 0 to N range.
+        System.out.println(actual_sum - present_sum);
+
+        sc.close();
+    }
+}
