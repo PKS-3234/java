@@ -1,0 +1,21 @@
+import java.util.*; // This imports java.util.Scanner as well
+
+class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String name = sc.next();
+
+        StringBuilder sb = new StringBuilder(name);
+
+        sb.reverse();
+
+        // Corrected: 't' in toString() should be lowercase, no space
+        String reversed_string = sb.toString(); 
+        
+        System.out.println(reversed_string);
+
+        sc.close(); // Good practice to close the scanner
+    }
+}
