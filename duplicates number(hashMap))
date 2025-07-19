@@ -1,0 +1,26 @@
+import java.util.*;
+class Main{
+    public static void main(String[] args)
+    {
+     Scanner sc= new Scanner(System.in);
+     
+     int n= sc.nextInt();
+     int[] array= new int[n];
+     
+     for(int i=0;i<n;i++){
+         array[i]=sc.nextInt();
+     }
+     
+     HashMap<Integer,Integer> array2 =new HashMap<>();
+     
+     for(int num:array)
+     {
+         array2.put(num,array2.getOrDefault(num,0)+1);
+     }
+     
+     for(Map.Entry<Integer,Integer> entry : array2.entrySet())
+     {
+         System.out.println(entry.getKey()+"-"+entry.getValue());
+     }
+    }
+}
