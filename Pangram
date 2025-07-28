@@ -1,0 +1,22 @@
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        char[] c = s.toCharArray();
+        Arrays.sort(c);
+        
+        char r = 'a';
+        for(int i=0; i<c.length; i++){
+            if(r == c[i] && r == 'z'){
+                System.out.println("Pangram");
+                return;
+            }
+            if(r==c[i]){
+                r++;
+            }
+        }
+        System.out.println("Not Pangram");
+    }
+}
