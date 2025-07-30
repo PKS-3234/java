@@ -1,0 +1,21 @@
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int k=sc.nextInt();
+        int len=String.valueOf(k).length();
+        int square=k*k;
+        String square2=String.valueOf(square);
+        String left=square2.substring(0,len);
+        String right=square2.substring(len);
+        int left2=Integer.parseInt(left);
+        int right2=Integer.parseInt(right);
+        if(left2+right2==k)
+        System.out.println("Yes");
+        else
+        System.out.println("No");
+        
+    
+        
+    }
+}
