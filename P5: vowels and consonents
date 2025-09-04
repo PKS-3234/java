@@ -23,7 +23,7 @@ class Main {
         String name = sc.next();
         // Correct array declaration
         char[] array = new char[name.length()];
-        for (int i = 0; i < name.length(); i++) {
+        for (int i = 0; i < name.length(); i++) {  // you acn use name.toCharArray()
             array[i] = name.charAt(i);
         }
         is_vowel(array);
