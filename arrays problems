@@ -1,0 +1,354 @@
+------->>>Find the largest and smallest element in an array
+
+public class LargestAndSmallest {
+    public static void main(String[] args) {
+        int[] numbers = {12, 45, 2, 10, 34, 89, 1};
+
+        // Initialize smallest and largest with the first element
+        int smallest = numbers[0];
+        int largest = numbers[0];
+
+        // Loop through the array
+        for (int num : numbers) {
+            if (num < smallest) {
+                smallest = num; // Update smallest
+            }
+            if (num > largest) {
+                largest = num; // Update largest
+            }
+        }
+
+        // Print the results
+        System.out.println("Smallest element: " + smallest);
+        System.out.println("Largest element: " + largest);
+    }
+}
+
+---------------------------------------------------------------------------------------------------
+// printing largest and second largest value without sorting
+import java.util.*;
+class Main{
+    public static void main(String[]args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        if(n<2)
+            return;
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        
+        int largest=Integer.MIN_VALUE;
+        int second=Integer.MIN_VALUE;
+        
+        for(int num:arr){
+            if(num>largest){
+                second=largest;
+                largest=num;
+            }
+            else if(num>second && num<largest)
+                second=num;
+        }
+        
+        if (second==Integer.MIN_VALUE)
+            System.out.println("second not found");
+        else
+            System.out.println(second);
+        
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+reverse array in place
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+         
+        if(n==1){
+            System.out.println(arr[0]);
+            return;
+        }
+        int start=0;
+        int end=arr.length-1;
+        
+        while(end>start){
+            int temp;
+            temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
+        }
+         System.out.print(Arrays.toString(arr));
+        
+    }
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Rotate an array by k steps (left/right rotation)
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+         
+       int s=sc.nextInt();
+       int steps=s%arr.length;
+       
+       for(int i=arr.length-steps;i<arr.length;i++)
+        System.out.print(arr[i]+" ");
+       for(int i=0;i<arr.length-steps;i++)
+        System.out.print(arr[i]+" ");
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Move all zeros to the end
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+        int count=0;
+        for(int i:arr){
+            if(i!=0)
+            System.out.print(i+" ");
+            else
+            count++;
+        }
+        for(int i=0;i<count;i++)
+        System.out.print("0"+" ");
+    }
+}
+
+---> actual approch:
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+        
+        int pos=0;
+        for(int num:arr){
+            if(num!=0){
+                arr[pos]=num;
+                pos++;
+            }
+        }
+        while(pos<arr.length)
+        {
+            arr[pos]=0;
+            pos++;
+        }
+        
+        System.out.print(Arrays.toString(arr));
+    }
+}
+
+---------------------------------------------------------------------------------------------------------
+max sum subarray: kadens algorithm
+import java.util.*;
+class Main{
+    static int max_subarray_sum(int[] arr){
+        int n=arr.length;
+        int max_sum=Integer.MIN_VALUE;
+        int curr_sum=0;
+        
+        for(int i=0;i<n;i++){
+          curr_sum=Math.max(arr[i],curr_sum+arr[i]);
+          max_sum=Math.max(curr_sum,max_sum);
+          if(curr_sum<0){
+              curr_sum=0;
+          }
+        }
+        
+        return max_sum;
+    }
+    
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+        
+        System.out.println(max_subarray_sum(arr));
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------
+Find missing number from 1…n
+public class MissingNumber {
+    public static int findMissingNumber(int[] arr, int n) {
+        int totalSum = n * (n + 1) / 2;
+        int arraySum = 0;
+        for (int num : arr) {
+            arraySum += num;
+        }
+        return totalSum - arraySum;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 4, 5, 6};
+        int n = 6;
+        System.out.println("Missing Number: " + findMissingNumber(arr, n));
+    }
+}
+_____________________________________________________________________________________________________________________________________
+Find duplicate number(s) in an array
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+        
+        HashSet<Integer> set= new HashSet<>();
+        HashSet<Integer> duplicates= new HashSet<>();
+        
+        for(int num:arr){
+            if(!set.add(num))
+                duplicates.add(num);
+            else
+                set.add(num);
+        }
+        
+        for(int num:duplicates)
+        System.out.print(num+" ");
+    }
+}
+
+________________________________________________________________________________________________________________________________________________
+*********find the ocurence of each element using hashMap
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+        
+       HashMap<Integer,Integer> map=new HashMap<>();
+       for(int num:arr){
+           map.put(num,map.getOrDefault(num,0)+1);
+       }
+       
+       for(Map.Entry<Integer,Integer> entry :map.entrySet())
+        System.out.println(entry.getKey()+"--> "+entry.getValue());
+        
+    }
+}
+______________________________________________________________________________________________________________________________________________
+Two Sum
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+        int target=sc.nextInt();
+        
+        HashSet<Integer> set=new HashSet<>();
+        for(int i=0;i<n;i++){
+            int ans=target-arr[i];
+            if(set.contains(ans))
+            {
+                 System.out.println(arr[i]+" "+ans);
+                return;
+            }
+            
+            else
+            {
+                set.add(arr[i]);
+            }
+        
+        }
+      
+        
+    }
+}
+___________________________________________________________________________________________________________
+Rainwater trapping using array preprocessing:
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+        
+        
+       int[] left =new int[n];
+       int[] right=new int[n];
+       
+       left[0]=arr[0];
+       right[n-1]=arr[n-1];
+       
+       for(int i=1;i<n;i++)
+       left[i]=Math.max(arr[i],left[i-1]);
+       
+       for(int i=n-2;i>=0;i--)
+        right[i]=Math.max(arr[i],right[i+1]);
+        
+        int ans=0;
+        for(int i=0;i<n;i++){
+            ans+=Math.min(left[i],right[i])-arr[i];
+        }
+        
+        System.out.println(ans);
+        
+    }
+}
+What “array preprocessing” means
+
+Array preprocessing is when you compute some extra information in advance and store it in an array (or arrays) so that later queries or calculations can be done much faster.
+
+Basically, you “preprocess” the array to make future operations efficient.
+_____________________________________________________________________________________________________________________________________________________________________4
+Buy and Sell Stock to maximize profit-->O(n) and space:O(1)
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+       int[] arr={3,1,4,8,7,2,8};
+       int n=arr.length;
+       int max_profit=0;
+       
+       int max_so_far=arr[n-1];
+       for(int i=n-1;i>=0;i--){
+           max_so_far=Math.max(max_so_far,arr[i]);
+           if(max_so_far-arr[i]>max_profit)
+           max_profit=max_so_far-arr[i];
+       }
+       System.out.println(max_profit);
+    }
+    }
+
+
+
