@@ -1,0 +1,318 @@
+**********Check if a string is a palindrome
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String str1=sc.next();
+        String str=str1.toLowerCase();
+        int n=str.length();
+        
+        StringBuilder sb=new StringBuilder();
+        for(int i=n-1;i>=0;i--){
+            sb.append(str.charAt(i));
+        }
+        String reverse=sb.toString();
+        
+        if(reverse.equals(str))
+        System.out.println("palindromme");
+        else
+        System.out.println("not");
+    }
+}
+_____________________________________________________________________________________________________________
+************revrse the sentence
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String str1=sc.nextLine();
+        StringBuilder sb=new StringBuilder();
+        
+        String[] arr=str1.trim().split("\\s+");
+        
+        for(int i=arr.length-1;i>=0;i--){
+            sb.append(arr[i]);
+            if(i>0)sb.append(" ");
+        }
+        
+        System.out.println(sb.toString());
+       
+    }
+}
+
+trim() removes extra spaces at start and end.
+
+split("\\s+") splits on one or more spaces (handles multiple spaces).
+
+Loop builds reversed order.
+
+
+
+What does \\s+ mean?
+
+\s (in regex) → means any whitespace character
+(space " ", tab \t, newline \n, etc.).
+
++ → means “one or more occurrences” of the thing before it.
+
+So \s+ → “one or more whitespace characters”.
+
+3. Why \\s+ and not \s+?
+
+In Java, the backslash \ is an escape character in strings.
+
+"\\s+" in Java string → becomes \s+ in regex.
+
+If you wrote "\s+", Java would throw a compilation error (illegal escape).
+
+
+
+str1 = str1.replaceAll("^[^a-zA-Z0-9.,]+|[^a-zA-Z0-9.,]+$", "");
+if there exist any special characters , you can replace it with space and then split them basis on white space
+__________________________________________________________________________________________________________
+Program to convert integers to IP Address : 
+
+
+# importing the module
+import ipaddress
+
+# converting int to IPv4 address
+print(ipaddress.ip_address(3221225000))
+print(ipaddress.ip_address(123))
+
+# converting int to IPv6 address
+print(ipaddress.ip_address(42540766400282592856903984001653826561))
+
+# importing the module
+import ipaddress
+
+# converting IPv4 address to int
+addr1 = ipaddress.ip_address('191.255.254.40')
+addr2 = ipaddress.ip_address('0.0.0.123')
+print(int(addr1))
+print(int(addr2))
+
+# converting IPv6 address to int
+addr3 = ipaddress.ip_address('2001:db7:dc75:365:220a:7c84:d796:6401')
+print(int(addr3))
+
+convert ipv4 to ipv6 and vice versa
+___________________________________________________________________________________________________________________
+
+Find first non-repeating character
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String str=sc.nextLine();
+        
+        HashMap<Character,Integer> map=new HashMap<>();
+        for(int i=0;i<str.length();i++){
+            map.put(str.charAt(i),map.getOrDefault(str.charAt(i),0)+1);
+        }
+        
+        for(Map.Entry<Character,Integer> entry:map.entrySet()){
+            if(entry.getValue()==1)
+            {
+                System.out.println(entry.getKey());
+                return;
+            }
+        }
+    }
+}
+________________________________________________________________________________________________________________________
+
+*******check whether 2 strings are anagram eg:listen and silent
+
+Approaches
+
+Sort both strings → if sorted strings are equal, they’re anagrams.
+
+Count characters (using HashMap or frequency array).
+
+Faster, avoids sorting.
+
+Especially good if restricted to lowercase letters.
+
+
+alternative approch:
+char[] a1 = s1.toCharArray();
+char[] a2 = s2.toCharArray();
+Arrays.sort(a1);
+Arrays.sort(a2);
+return Arrays.equals(a1, a2);
+
+____________________________________________________________________________________________________________________
+Longest common prefix in a set of strings
+
+public static String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+
+        Arrays.sort(strs);  // sort lexicographically
+
+        String first = strs[0];
+        String last = strs[strs.length - 1];
+        int minLength = Math.min(first.length(), last.length());
+
+        int i = 0;
+        while (i < minLength && first.charAt(i) == last.charAt(i)) {
+            i++;
+        }
+
+        return first.substring(0, i);
+    }
+
+__________________________________________________________________________________________________________________
+count vowels,consonants,digits,spaces
+public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+
+        int vowels = 0, consonants = 0, digits = 0, spaces = 0;
+
+        str = str.toLowerCase(); // handle case insensitivity
+
+        for (char c : str.toCharArray()) {
+            if (c >= 'a' && c <= 'z') {
+                if ("aeiou".indexOf(c) != -1) {
+                    vowels++;
+                } else {
+                    consonants++;
+                }
+            } else if (c >= '0' && c <= '9') {
+                digits++;
+            } else if (c == ' ') {
+                spaces++;
+            }
+            // you can add more conditions for punctuation if needed
+        }
+
+________________________________________________________________________________________________________________
+Implement strStr() (find substring in string):haystack and needle wala question of leetcode
+
+
+public static int strStr(String haystack, String needle) {
+        if (needle.isEmpty()) return 0; // per convention
+
+        int n = haystack.length();
+        int m = needle.length();
+
+        for (int i = 0; i <= n - m; i++) {
+            if (haystack.substring(i, i + m).equals(needle)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+______________________________________________________________________________________________________________
+
+Longest Palindromic Substring
+______________________________________________________________________________________________________________
+Valid Parentheses (using stack + string)
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        if (isValid(s)) {
+            System.out.println("Valid");
+        } else {
+            System.out.println("Invalid");
+        }
+    }
+
+    public static boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+            // If opening bracket → push
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } 
+            // If closing bracket → check match
+            else {
+                if (stack.isEmpty()) return false; // nothing to match
+
+                char top = stack.pop();
+
+                if ((ch == ')' && top != '(') ||
+                    (ch == '}' && top != '{') ||
+                    (ch == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+
+        // If stack empty → valid
+        return stack.isEmpty();
+    }
+}
+
+____________________________________________________________________________________________________________
+***********String compression (e.g., "aaabbc" → "a3b2c1")
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        HashMap<Character,Integer> map=new HashMap<>();
+        
+        for(char ch:str.toCharArray()){
+           map.put(ch,map.getOrDefault(ch,0)+1); 
+        }
+        
+        for(Map.Entry<Character,Integer> entry: map.entrySet()){
+            System.out.print(entry.getKey()+""+entry.getValue());
+        }
+    }
+}
+___________________________________________________________________________________________________________
+***********LCM 
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int gcd = findGCD(n, m);
+        int lcm = (n * m) / gcd;
+
+        System.out.println(lcm);
+    }
+
+    static int findGCD(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+}
+relationship between HCF(GCD) and LCM :
+HCF = a*b / LCM
+hcf you can finf using gcd:
+gcd(int a,int b){
+while(b!=0){
+int temp=b;
+b=a%b;
+a=temp;
+}
+retuen a;
+}
+
+
+
+if three numbers comes:
+int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+
+        int gcd = findGCD(findGCD(a, b), c);  // step by step
+        System.out.println("GCD of three numbers = " + gcd);
