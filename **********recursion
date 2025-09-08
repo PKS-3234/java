@@ -1,0 +1,18 @@
+******factorial
+public static long factorialRecursive(int n) {
+    if (n < 0) throw new IllegalArgumentException("n must be non-negative");
+    if (n == 0 || n == 1) return 1L;        // base case
+    return n * factorialRecursive(n - 1);    // recursion
+}
+__Validate input early (n < 0).
+
+Know the largest safe n for int/long.
+
+int safe up to 12!
+
+long safe up to 20!
+
+For “very large n”, mention BigInteger immediately.
+___________________________________________________________________________________
+
+******
