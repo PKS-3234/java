@@ -1,3 +1,6 @@
+if u want to take each digit from a number you can use %
+eg: 1234-->1234 % 10=4 then u can reduce the original number to 123 by 1234 / 10   which can be sed for further operations. 
+------------------------------------------------------------
 **********Check if a string is a palindrome
 import java.util.*;
 class Main{
