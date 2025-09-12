@@ -14,5 +14,74 @@ long safe up to 20!
 
 For “very large n”, mention BigInteger immediately.
 ___________________________________________________________________________________
+nPr = n! / (n - r)
+nCr= n!/r!(n-r)!
 
-******
+******permuataion of ABC
+import java.util.Scanner;
+
+class Main {
+    static void Permutation(char[] arr, int fi) {
+        if (fi == arr.length - 1) {
+            System.out.println(new String(arr));
+            return;
+        }
+        for (int i = fi; i < arr.length; i++) {
+            swap(arr, fi, i);
+            Permutation(arr, fi + 1);
+            swap(arr, fi, i); // backtrack
+        }
+    }
+
+    static void swap(char[] arr, int i, int j) {
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        Permutation(s.toCharArray(), 0);
+    }
+}
+____________________________________________________________________________________________________________________________
+import java.util.*;
+
+class Main {
+    public static int countEvenProductTriplets(List<Integer> arr) {
+        int n = arr.size();
+        
+        if (n < 3) return 0;
+        
+        int oddCount = 0;
+        for (int num : arr) {
+            if (num % 2 != 0) oddCount++;
+        }
+        
+        // total triplets
+        int totalTriplets = (n * (n - 1) * (n - 2)) / 6;
+        
+        // triplets with all odd numbers
+        int oddTriplets = 0;
+        if (oddCount >= 3) {
+            oddTriplets = (oddCount * (oddCount - 1) * (oddCount - 2)) / 6;
+        }
+        
+        return totalTriplets - oddTriplets;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int size = sc.nextInt();
+        List<Integer> arr = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            arr.add(sc.nextInt());
+        }
+        
+        System.out.println(countEvenProductTriplets(arr));
+    }
+}
+_____________________________________________________________________________________________________________________
+
