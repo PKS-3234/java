@@ -319,3 +319,46 @@ int a = sc.nextInt();
 
         int gcd = findGCD(findGCD(a, b), c);  // step by step
         System.out.println("GCD of three numbers = " + gcd);
+---------------------------------------------------------------------------------------------------------------------------
+
+import java.util.*;
+
+class Main {
+    public static boolean hasCommonChar(String s1, String s2) {
+        // use a set for fast lookup
+        Set<Character> set = new HashSet<>();
+        for (char c : s1.toCharArray()) {
+            set.add(c);
+        }
+        for (char c : s2.toCharArray()) {
+            if (set.contains(c)) {
+                return true; // found common char
+            }
+        }
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();   // size of arrays
+        String[] arr1 = new String[n];
+        String[] arr2 = new String[n];
+        
+        for (int i = 0; i < n; i++) {
+            arr1[i] = sc.next();
+        }
+        for (int i = 0; i < n; i++) {
+            arr2[i] = sc.next();
+        }
+        
+        for (int i = 0; i < n; i++) {
+            if (!hasCommonChar(arr1[i], arr2[i])) {
+                System.out.println("NO");
+                return;
+            }
+        }
+        
+        System.out.println("YES");
+    }
+}
